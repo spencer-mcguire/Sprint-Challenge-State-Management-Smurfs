@@ -23,6 +23,11 @@ const SmurfForm = props => {
     console.log(value);
     e.preventDefault();
     props.postSmurfs(value);
+    setValue({
+      name: "",
+      age: "",
+      height: ""
+    });
   };
 
   return (
