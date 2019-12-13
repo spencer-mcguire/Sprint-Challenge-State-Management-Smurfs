@@ -5,6 +5,8 @@ export {
   POST_SMURF_START,
   POST_SMURF_SUCCESS,
   POST_SMURF_FAIL,
+  KILL_SMURF,
   getSmurfs,
-  postSmurfs
+  postSmurfs,
+  kill
 } from "./smurfActions";

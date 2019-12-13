@@ -4,7 +4,8 @@ import {
   FETCH_SMURF_FAIL,
   POST_SMURF_START,
   POST_SMURF_SUCCESS,
-  POST_SMURF_FAIL
+  POST_SMURF_FAIL,
+  KILL_SMURF
 } from "../actions";
 
 const initialState = {
@@ -55,6 +56,12 @@ const smurfReducer = (state = initialState, action) => {
         ...state,
         isRequesting: false,
         error: action.payload
+      };
+
+    case KILL_SMURF:
+      return {
+        ...state,
+        smurfs: state.smurfs.filter(i => action.payload.id !== i.id)
       };
 
     default:

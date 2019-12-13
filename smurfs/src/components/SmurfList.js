@@ -3,7 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { getSmurfs } from "../actions";
 
-import { SmurfCard } from "./SmurfCard";
+import SmurfCard from "./SmurfCard";
 
 const SmurfList = props => {
   return (
