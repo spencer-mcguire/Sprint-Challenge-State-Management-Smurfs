@@ -6,7 +6,10 @@ import {
   POST_SMURF_SUCCESS,
   POST_SMURF_FAIL,
   KILL_SMURF_START,
-  KILL_SMURF_SUCCESS
+  KILL_SMURF_SUCCESS,
+  EDIT_FIELDS,
+  PUT_SMURF_START,
+  PUT_SMURF_SUCCESS
 } from "../actions";
 
 const initialState = {
@@ -14,6 +17,7 @@ const initialState = {
   isFetching: false,
   isRequesting: false,
   isDeleting: false,
+  isEditing: false,
   error: ""
 };
 
@@ -72,6 +76,24 @@ const smurfReducer = (state = initialState, action) => {
         smurfs: action.payload,
         isDeleting: false,
         error: ""
+      };
+
+    case EDIT_FIELDS:
+      return {
+        ...state,
+        isEditing: true
+      };
+
+    case PUT_SMURF_START:
+      return {
+        ...state,
+        isEditing: false
+      };
+
+    case PUT_SMURF_SUCCESS:
+      return {
+        ...state,
+        smurfs: action.payload
       };
 
     default:

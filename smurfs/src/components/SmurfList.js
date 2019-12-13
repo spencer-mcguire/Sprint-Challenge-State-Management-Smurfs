@@ -1,20 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { connect } from "react-redux";
-import { getSmurfs } from "../actions";
+import { getSmurfs, editFields } from "../actions";
 
 import SmurfCard from "./SmurfCard";
 
 const SmurfList = props => {
+  useEffect(() => {
+    props.getSmurfs();
+  }, []);
   return (
     <div>
-      {!props.smurfs ||
+      {/* {!props.smurfs ||
         (props.smurfs.length === 0 && (
           <button onClick={() => props.getSmurfs()}>Get Started</button>
-        ))}
+        ))} */}
       {props.smurfs.map(i => (
         <SmurfCard key={i.id} i={i} />
       ))}
+      {!props.isEditing && (
+        <button onClick={() => props.editFields()}>Edit</button>
+      )}
     </div>
   );
 };
@@ -28,4 +34,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getSmurfs })(SmurfList);
+export default connect(mapStateToProps, { getSmurfs, editFields })(SmurfList);

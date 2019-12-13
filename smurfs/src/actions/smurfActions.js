@@ -11,6 +11,11 @@ export const POST_SMURF_FAIL = "POST_SMURF_FAIL";
 export const KILL_SMURF_START = "KILL_SMURF_START";
 export const KILL_SMURF_SUCCESS = "KILL_SMURF_SUCCESS";
 
+export const PUT_SMURF_START = "PUT_SMURF_START";
+export const PUT_SMURF_SUCCESS = "PUT_SMURF_SUCCESS";
+
+export const EDIT_FIELDS = "EDIT_FIELDS";
+
 export const getSmurfs = () => dispatch => {
   dispatch({ type: FETCH_SMURF_START });
   axios
@@ -38,4 +43,19 @@ export const kill = id => dispatch => {
     console.log(res);
     dispatch({ type: KILL_SMURF_SUCCESS, payload: res.data });
   });
+};
+
+export const editFields = i => {
+  return {
+    type: EDIT_FIELDS,
+    payload: i
+  };
+};
+
+export const putSmurfs = id => dispatch => {
+  console.log("edit item", id);
+  dispatch({ type: PUT_SMURF_START });
+  axios
+    .put(`http://localhost:3333/smurfs/${id.id}`, id)
+    .then(res => dispatch({ type: PUT_SMURF_SUCCESS, payload: res.data }));
 };

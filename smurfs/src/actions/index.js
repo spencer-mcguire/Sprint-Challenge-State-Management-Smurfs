@@ -7,7 +7,12 @@ export {
   POST_SMURF_FAIL,
   KILL_SMURF_START,
   KILL_SMURF_SUCCESS,
+  EDIT_FIELDS,
+  PUT_SMURF_START,
+  PUT_SMURF_SUCCESS,
   getSmurfs,
   postSmurfs,
-  kill
+  kill,
+  editFields,
+  putSmurfs
 } from "./smurfActions";
