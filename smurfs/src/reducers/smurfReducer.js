@@ -5,13 +5,15 @@ import {
   POST_SMURF_START,
   POST_SMURF_SUCCESS,
   POST_SMURF_FAIL,
-  KILL_SMURF
+  KILL_SMURF_START,
+  KILL_SMURF_SUCCESS
 } from "../actions";
 
 const initialState = {
   smurfs: [],
   isFetching: false,
   isRequesting: false,
+  isDeleting: false,
   error: ""
 };
 
@@ -46,7 +48,7 @@ const smurfReducer = (state = initialState, action) => {
     case POST_SMURF_SUCCESS:
       return {
         ...state,
-        smurfs: [...state.smurfs, action.payload],
+        smurfs: action.payload,
         isRequesting: false,
         error: ""
       };
@@ -58,10 +60,18 @@ const smurfReducer = (state = initialState, action) => {
         error: action.payload
       };
 
-    case KILL_SMURF:
+    case KILL_SMURF_START:
       return {
         ...state,
-        smurfs: state.smurfs.filter(i => action.payload.id !== i.id)
+        isDeleting: true
+      };
+
+    case KILL_SMURF_SUCCESS:
+      return {
+        ...state,
+        smurfs: action.payload,
+        isDeleting: false,
+        error: ""
       };
 
     default:

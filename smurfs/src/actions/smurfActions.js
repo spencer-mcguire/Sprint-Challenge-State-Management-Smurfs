@@ -8,7 +8,8 @@ export const POST_SMURF_START = "POST_SMURF_START";
 export const POST_SMURF_SUCCESS = "POST_SMURF_SUCCESS";
 export const POST_SMURF_FAIL = "POST_SMURF_FAIL";
 
-export const KILL_SMURF = "KILL_SMURF";
+export const KILL_SMURF_START = "KILL_SMURF_START";
+export const KILL_SMURF_SUCCESS = "KILL_SMURF_SUCCESS";
 
 export const getSmurfs = () => dispatch => {
   dispatch({ type: FETCH_SMURF_START });
@@ -26,6 +27,15 @@ export const postSmurfs = data => dispatch => {
     .catch(err => dispatch({ type: FETCH_SMURF_FAIL, payload: err }));
 };
 
-export const kill = i => {
-  return { type: KILL_SMURF, payload: i };
+// export const kill = i => {
+//   return { type: KILL_SMURF, payload: i };
+// };
+
+export const kill = id => dispatch => {
+  console.log(id);
+  dispatch({ type: KILL_SMURF_START });
+  axios.delete(`http://localhost:3333/smurfs/${id.id}`).then(res => {
+    console.log(res);
+    dispatch({ type: KILL_SMURF_SUCCESS, payload: res.data });
+  });
 };

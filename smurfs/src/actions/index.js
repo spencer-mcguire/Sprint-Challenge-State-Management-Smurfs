@@ -5,7 +5,8 @@ export {
   POST_SMURF_START,
   POST_SMURF_SUCCESS,
   POST_SMURF_FAIL,
-  KILL_SMURF,
+  KILL_SMURF_START,
+  KILL_SMURF_SUCCESS,
   getSmurfs,
   postSmurfs,
   kill
