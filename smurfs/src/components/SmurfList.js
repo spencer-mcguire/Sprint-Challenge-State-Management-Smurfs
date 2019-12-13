@@ -11,16 +11,13 @@ const SmurfList = props => {
   }, []);
   return (
     <div>
-      {/* {!props.smurfs ||
-        (props.smurfs.length === 0 && (
-          <button onClick={() => props.getSmurfs()}>Get Started</button>
-        ))} */}
       {props.smurfs.map(i => (
         <SmurfCard key={i.id} i={i} />
       ))}
-      {!props.isEditing && (
-        <button onClick={() => props.editFields()}>Edit</button>
-      )}
+      {props.smurfs.length === 0 ||
+        (!props.isEditing && (
+          <button onClick={() => props.editFields()}>Edit</button>
+        ))}
     </div>
   );
 };
